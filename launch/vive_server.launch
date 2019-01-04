@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <machine name="OptiPlex-9010" address="OptiPlex-9010" env-loader="/home/erio/catkin_ws/devel/env.sh" user="erio" password="419000"/>
+  <arg name="rvizconfig" default="$(find srs005_ros)/rviz/vive1.rviz" />
+
+  <node machine="OptiPlex-9010" name="vive_server" pkg="vive_server" type="vive_server.py" output="screen" />
+
+<!--
+  <node name="dummy_ps" pkg="srs005_ros" type="dummy_ps.py" output="screen" />
+-->
+  <node name="vive_converter" pkg="srs005_ros" type="vive_converter" output="screen" >
+    <remap from="pose_in" to="/LHR_8ED3A411/pose"/>
+  </node>
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+</launch>

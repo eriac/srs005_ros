@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <param name="robot_description" type="str" textfile="$(find srs005_ros)/urdf/robot.urdf"/>
+  <arg name="rvizconfig" default="$(find srs005_ros)/rviz/robot.rviz" />
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+
+  <node pkg="rosbag" name="record"  type="play" args="$(find srs005_ros)/resources/bag1/my_file.bag" output="screen" />
+</launch>

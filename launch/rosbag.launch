@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <node pkg="rosbag" name="record"  type="record" args="-O $(find srs005_ros)/resources/my_file.bag /cmd_vel /map /odom /scan /tf /tf_static /image_raw/compressed
+" output="screen" />
+</launch>
